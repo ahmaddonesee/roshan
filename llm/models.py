@@ -13,7 +13,7 @@ class UploadFile(models.Model):
     
     
     def __str__(self):
-        return self.author+'is author of '+self.name
+        return self.name
     
 
 
@@ -25,4 +25,4 @@ class Comment(models.Model):
     elidt_at=models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return self.user+'said that '+self.text
+        return self.user

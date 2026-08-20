@@ -17,7 +17,7 @@ def  register(request):
             user = form.save(commit=False)
             user.save()
             login(request,user)
-            return redirect('blog:blog_list')
+            return redirect('llm:upload_file')
     else:
         return  render(request,'register/register.html',{'form':form})    
 
@@ -32,7 +32,7 @@ def login_view(request):
                 user.save()
                 login(request,user)
                 messages.info(request, f"You are now logged in as {user_name}.")
-                return redirect('blog:blog_list')
+                return redirect('llm:upload_file')
             else:
                 messages.error(request,"Invalid username or password.")
         else:
@@ -44,7 +44,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.info(request,"Logged out successfully!")
-    return redirect("blog:blog_list")
+    return redirect("llm:upload_file")
 
 
 def delete_account(request,id):
@@ -52,7 +52,7 @@ def delete_account(request,id):
     if request.method=="POST":
         user.delete()
         messages.success(request,"Account Deleted Successfully")
-        return redirect('blog:blog_list')
+        return redirect('llm:upload_file')
     return render(request,'register/delete_account.html',{"user":user}) 
 
 

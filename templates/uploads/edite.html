@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block content %}
+<ul>
+  <li>{{uploadfile.author}}</li>
+  <li>{{uploadfile.text}}</li>
+  <li>{{uploadfile.name}}</li>
+  <li>{{uploadfile.file}}</li>
+  <li>{{uploadfile.id}}</li>
+</ul>
+<h1>update blog</h1>
+<form action="" method="post">
+  {% csrf_token %} {{form.as_p}}
+  <button type="submit" value="update">edite</button>
+</form>
+{% endblock content %}
