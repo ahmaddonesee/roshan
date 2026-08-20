@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>login page:</h1>
+<div class="container mt-5">
+  <form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="formGroupExampleInput">username</label>
+      <input type="text" class="form-control" name="username" id="d1" placeholder="username..">
+    </div>
+    <div class="form-group">
+      <label for="formGroupExampleInput2">password</label>
+      <input type="password" class="form-control" name="password" id="d1" placeholder="password..">
+    </div>
+    <input type="submit" class="btn btn-primary mt-4" value="Login" />
+  </form>
+
+  <div class="mt-4"><h4>forgot your password: <a href="{% url 'register:password-reset' %}" class="btn btn-primary" style="text-decoration: none;">click here</a></h4>
+  
+  <h4>if you have not account:
+  <a href="{% url 'register:register' %}" class="btn btn-primary" style="text-decoration: none;">Register</a></h4>
+</div>
+<style>
+  #d1{
+    width: 30%;
+  }
+</style>
+
+{% endblock content %}
