@@ -3,6 +3,7 @@ from .models import UploadFile,Comment
 from .forms import UploadFileForm,CommentForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+import os
 
 def upload_file(request,id=None):
     form=UploadFileForm()
@@ -74,8 +75,15 @@ def delete_file(request,id):
     uploadfile=UploadFile.objects.get(id=id)
     user=User.objects.get(username=request.user.username)
     if user==uploadfile.author or request.user.is_superuser :
-        uploadfile.delete()
-        return redirect('llm:upload_file')
+        # if os.path.isfile(uploadfile.file):
+        #     os.remove(uploadfile.file.path)
+            uploadfile.delete()
+            return redirect('llm:upload_file')
+        # else:
+        #     return HttpResponse("not found file path")
+    else:
+        return HttpResponse("error")
+        
 
 
 
@@ -88,7 +96,7 @@ def read_file(request, id):
         # print(content)
         # print(999999999999999999999999999999999)
         # content.close()
-
+    
     return render(
         request,
         'uploads/read.html',
